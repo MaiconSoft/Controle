@@ -1,0 +1,254 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Tube.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/PID.gd" type="Script" id=2]
+[ext_resource path="res://UI/btnSend.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=4]
+[ext_resource path="res://UI/btnSend_pressed.png" type="Texture" id=5]
+[ext_resource path="res://UI/on_off.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/GROBOLD.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+extra_spacing_bottom = -5
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Fonts/GROBOLD.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 28
+font_data = SubResource( 3 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Tube" parent="." instance=ExtResource( 1 )]
+position = Vector2( 674.396, 325.856 )
+scale = Vector2( 0.4, 0.4 )
+setpoint = 50.0
+
+[node name="PID" type="Node" parent="."]
+script = ExtResource( 2 )
+KP = 5.0
+KI = 0.03
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edP" type="TextEdit" parent="UI"]
+margin_left = 85.0
+margin_top = 104.499
+margin_right = 285.0
+margin_bottom = 147.499
+custom_fonts/font = SubResource( 2 )
+text = "0
+"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "KP"
+}
+
+[node name="lbP" type="Label" parent="UI"]
+margin_left = 40.1568
+margin_top = 107.544
+margin_right = 80.1568
+margin_bottom = 144.544
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0.4, 0, 1 )
+text = "P: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edI" type="TextEdit" parent="UI"]
+margin_left = 85.0
+margin_top = 165.149
+margin_right = 285.0
+margin_bottom = 208.149
+custom_fonts/font = SubResource( 2 )
+text = "0
+"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "KI"
+}
+
+[node name="lbI" type="Label" parent="UI"]
+margin_left = 38.0618
+margin_top = 168.998
+margin_right = 78.0618
+margin_bottom = 205.998
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0.4, 0, 1 )
+text = "I: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edD" type="TextEdit" parent="UI"]
+margin_left = 85.0
+margin_top = 225.8
+margin_right = 285.0
+margin_bottom = 268.8
+custom_fonts/font = SubResource( 2 )
+text = "0
+"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "KD"
+}
+
+[node name="lbD" type="Label" parent="UI"]
+margin_left = 40.1568
+margin_top = 229.055
+margin_right = 83.1568
+margin_bottom = 266.055
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0.4, 0, 1 )
+text = "D: "
+align = 1
+valign = 1
+
+[node name="lbPV" type="Label" parent="UI"]
+margin_left = 779.331
+margin_top = 134.684
+margin_right = 819.331
+margin_bottom = 174.684
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.360784, 1, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbPV2" type="Label" parent="UI"]
+margin_left = 728.304
+margin_top = 134.684
+margin_right = 772.304
+margin_bottom = 174.684
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.360784, 1, 0, 1 )
+text = "PV:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbSP" type="Label" parent="UI"]
+margin_left = 779.331
+margin_top = 194.684
+margin_right = 819.331
+margin_bottom = 234.684
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbSP2" type="Label" parent="UI"]
+margin_left = 727.137
+margin_top = 194.684
+margin_right = 767.137
+margin_bottom = 234.684
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "SP:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Debug" type="Control" parent="UI"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P" type="Label" parent="UI/Debug"]
+margin_left = 53.6616
+margin_top = 378.968
+margin_right = 106.662
+margin_bottom = 418.968
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "P = "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="I" type="Label" parent="UI/Debug"]
+margin_left = 53.6616
+margin_top = 420.956
+margin_right = 98.6616
+margin_bottom = 460.956
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "I = "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="Label" parent="UI/Debug"]
+margin_left = 53.6616
+margin_top = 465.278
+margin_right = 100.662
+margin_bottom = 505.278
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "D ="
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MV" type="Label" parent="UI/Debug"]
+margin_left = 53.6616
+margin_top = 507.266
+margin_right = 126.662
+margin_bottom = 547.266
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "MV ="
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="on_off" parent="UI" instance=ExtResource( 6 )]
+position = Vector2( 834.332, 518.42 )
+scale = Vector2( 0.571355, 0.571355 )
+
+[node name="btnSetPID" type="TextureButton" parent="."]
+margin_left = 127.855
+margin_top = 292.774
+margin_right = 232.855
+margin_bottom = 332.774
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="new_mv" from="PID" to="." method="_on_PID_new_mv"]
+[connection signal="state_changed" from="UI/on_off" to="." method="_on_on_off_state_changed"]
+[connection signal="pressed" from="btnSetPID" to="." method="_on_btnSetPID_pressed"]
