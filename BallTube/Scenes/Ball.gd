@@ -28,8 +28,8 @@ func _physics_process(delta):
 #	velocity.x = clamp(velocity.x, -WALK_MAX_SPEED, WALK_MAX_SPEED)
 	velocity.x  = 0
 	# Vertical movement code. Apply gravity.
-	grav = gravity * delta
-	velocity.y += gravity * delta -inpulse
+	#grav = gravity * delta
+	velocity.y += gravity * delta - inpulse
 
 	# Move based on the velocity and snap to the ground.
 #	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)

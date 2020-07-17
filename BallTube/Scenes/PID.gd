@@ -32,20 +32,22 @@ func _physics_process(delta):
 		
 		integral += ((error+lastError)/2.0)*(KI/100.0)*delta
 		integral = max(integral,0)
+		if KI==0:
+			integral = 0
 		
 		var P = error*KP/100.0
 		var I = integral
-		var D = 0
+		var D = (error-lastError)/delta*KD/100.0
 		
 		mv = clamp(P+I+D,Min_MV,Max_MV)
 		
 		Machine.SetMV(mv)
 		emit_signal("new_mv",mv,P,I,D)
-		lastError = error	
+		lastError = error
 	else:
 		Machine.SetMV(0)
 		emit_signal("new_mv",0,0,0,0)
-		integral = 0
-		lastError = 0		
+#		integral = 0
+		lastError = 0
 #	print(str(mv)+"   "+str(Machine.get_node("Ball").velocity.y)+"   "+str(Machine.get_node("Ball").grav))
-	
+
